@@ -2,15 +2,23 @@ class HomePage_PO {
 
     enterDestination(destination) {
         cy.get('[data-test="SearchFieldItem-destination"]').type(destination)
-        cy.get('[data-test="PlacepickerModalOpened-destination"]').contains(destination).click()
+        cy.get('[data-test="PlacepickerModalOpened-destination"]').contains(destination).click({force: true})
+    }
+
+    uncheckBooking() {
+        cy.get('.Checkbox__Input-sc-1xqef2c-4').uncheck({force: true}).should('not.be.checked')
+    }
+
+    acceptCookies() {
+        cy.get('[data-test="CookiesPopup-Accept"]').click()
     }
 
     selectOutboundDate() {
-        cy.get('[data-test="SearchFieldDateInput"]').first().click()
+        cy.get('[data-test="SearchFieldDateInput"]').first().click({force: true})
     }
 
     selectInboundDate() {
-        cy.get('[data-test="SearchFieldDateInput"]').last().click()
+        cy.get('[data-test="SearchFieldDateInput"]').last().click({force: true})
     }
 
     selectDate(departureOrReturn, plusDays) {
@@ -29,13 +37,13 @@ class HomePage_PO {
             if (departureOrReturn = 'departure') {
                 cy.get('@yearMonth').first().then(currentMonthYear => {
                     if (!currentMonthYear.text().includes(futureYear)) {
-                        cy.get('[data-test="CalendarMoveNextButton"]').click();
+                        cy.get('[data-test="CalendarMoveNextButton"]').click({force: true});
                         selectMonthAndYear();
                     }
                 }).then(() => {
                     cy.get('@yearMonth').first().then(currentMonthYear => {
                         if (!currentMonthYear.text().includes(futureMonth)) {
-                            cy.get('[data-test="CalendarMoveNextButton"]').click();
+                            cy.get('[data-test="CalendarMoveNextButton"]').click({force: true});
                             selectMonthAndYear();
                         }
                     })
@@ -43,13 +51,13 @@ class HomePage_PO {
             }else{
                 cy.get('@yearMonth').last().then(currentMonthYear => {
                     if (!currentMonthYear.text().includes(futureYear)) {
-                        cy.get('[data-test="CalendarMoveNextButton"]').click();
+                        cy.get('[data-test="CalendarMoveNextButton"]').click({force: true});
                         selectMonthAndYear();
                     }
                 }).then(() => {
                     cy.get('@yearMonth').last().then(currentMonthYear => {
                         if (!currentMonthYear.text().includes(futureMonth)) {
-                            cy.get('[data-test="CalendarMoveNextButton"]').click();
+                            cy.get('[data-test="CalendarMoveNextButton"]').click({force: true});
                             selectMonthAndYear();
                         }
                     })
@@ -77,7 +85,7 @@ class HomePage_PO {
     }
 
     firstResultIncludesDestination(destination) {
-        cy.get('.ResultCardstyled__ResultCardSection-sc-vsw8q3-4').first().should('contain', destination)
+        cy.get('[data-test="ResultCardWrapper"]').should('contain', destination)
     }
 }
 
