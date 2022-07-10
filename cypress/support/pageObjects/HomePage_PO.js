@@ -87,6 +87,22 @@ class HomePage_PO {
     firstResultIncludesDestination(destination) {
         cy.get('[data-test="ResultCardWrapper"]').should('contain', destination)
     }
+
+    openClassOverlay() {
+        cy.get('[data-test^="CabinClassField"]').click()
+    }
+
+    uncheckMixedClass() {
+        cy.get('[data-test="MixedClass-checkbox"]').uncheck({force:true}).should('not.be.checked')
+    }
+
+    saveClassOverlay() {
+        cy.get('[data-test="CabinClassFooter-done"]').click()
+    }
+
+    selectFirstClass() {
+        cy.get('[type="radio"]').last().check({force:true})
+    }
 }
 
 export default HomePage_PO;
