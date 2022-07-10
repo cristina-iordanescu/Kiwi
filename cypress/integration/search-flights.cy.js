@@ -11,7 +11,6 @@ describe("Search for flight", () => {
 
     it("Search for a flight with specific arrival/departure time", () => {
         let destination = Cypress.env('destination');
-        // let destination = 'Sydney';
 
         homepage.enterDestination(destination)
         homepage.selectOutboundDate()
