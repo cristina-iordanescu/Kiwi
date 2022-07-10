@@ -1,0 +1,9 @@
+{
+    "viewportWidth": 1800,
+    "viewportHeight": 1800,
+    "baseUrl": "https://kiwi.com",
+    "env": {
+        "homepage": "https://kiwi.com",
+        "destination": "Barcelona"
+    }
+}
